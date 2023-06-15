@@ -86,6 +86,13 @@ async function importMdxFilesAndTransformThemIntoJsxComponentsScript(
       () => Promise<{ default: Component<React.ReactNode> }>
     >;
 
+    Object.defineProperties(
+      rawImportsFromTestMock,
+      Object.getOwnPropertyDescriptors(
+        import.meta.glob("../../test/mock/subpage/*.mdx")
+      )
+    );
+
     const rawImportsFromMdxComponents: Record<
       string,
       () => Promise<{ default: Component<React.ReactNode> }>
